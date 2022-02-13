@@ -31,7 +31,7 @@ export class HashtagService {
 
   deletar(idHashtag: string){
 
-    return this.http.delete(`${this.API}/deletar/${idHashtag}`).pipe(take(1));
+    return this.http.delete(`${this.API}/deletar/${idHashtag}`,{ responseType: 'text'} ).pipe(take(1));
 
   }
 }

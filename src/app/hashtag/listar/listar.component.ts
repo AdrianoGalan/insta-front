@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { Hashtag } from 'src/app/model/hashtag';
+import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
+
 import { HashtagService } from '../service/hashtag.service';
 
 @Component({
@@ -12,12 +15,16 @@ export class ListarComponent implements OnInit {
 
 
   hashtags$!: Observable<Hashtag[]>;
+  bsModalRef!: BsModalRef;
 
-  constructor(private hasservice: HashtagService) {
+  constructor(
+    private hasservice: HashtagService,
+    private modalService: BsModalService
+  ) {
 
     this.hashtags$ = this.hasservice.list();
 
-   }
+  }
 
   ngOnInit(): void {
 
@@ -25,25 +32,30 @@ export class ListarComponent implements OnInit {
 
   }
 
-  onDeletar(has: Hashtag){
+  onDeletar(has: Hashtag) {
 
     this.hasservice.deletar(has.id).subscribe(
 
-      success => {
+      () => {
 
-        //this.handleError('Funcionario Deletado');
+        this.handleError('Hashtag Deletada');
         this.ngOnInit();
 
       },
       erro => {
 
-       // this.handleError('Erro ao Deletar');
-
+        this.handleError('Erro ao Deletar');
 
       }
 
     );
 
+  }
+
+  handleError(msg: string) {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = 'danger';
+    this.bsModalRef.content.message = msg;
   }
 
 }
