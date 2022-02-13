@@ -1,1 +1,46 @@
-<p>salvar works!</p>
+<div class="container">
+  <legend>Adicionar Hashtag</legend><br>
+  <nav class="navbar navbar-light bg-light">
+    <div class="form-inline">
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="''">
+        voltar
+      </button>
+    </div>
+  </nav>
+</div>
+<div class="container" style="padding-top: 10px; width: 60%">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" *ngIf="categoria$ | async as categoria; else loading">
+    <legend>Cadastro do hashtags</legend>
+
+
+
+    <div class="row md-6">
+      <label for="nome" class="col-sm-3 col-form-label">Hashtages:</label>
+      <div class="col-sm-9">
+        <input style="margin: 5px" type="text" class="form-control" formControlName="nome" />
+      </div>
+    </div>
+
+    <div class="row md-6">
+      <label for="categoria" class="col-sm-3 col-form-label">Categoria:</label>
+      <div class="col-sm-9">
+        <select style="margin: 5px" id="categoria" class="form-control" formControlName="categoria">
+          <option *ngFor="let cat of categoria" [ngValue]="cat">{{ cat.nome }}</option>
+        </select>
+      </div>
+    </div>
+
+    
+
+
+
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+</div>
+
+<ng-template #loading>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

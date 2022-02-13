@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { GerarComponent } from './gerar/gerar.component';
 import { HashtagRoutingModule } from './hashtag-routing.module';
@@ -15,7 +16,9 @@ import { SalvarComponent } from './salvar/salvar.component';
   ],
   imports: [
     CommonModule,
-    HashtagRoutingModule
+    HashtagRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HashtagModule { }

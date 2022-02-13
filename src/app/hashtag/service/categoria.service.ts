@@ -10,7 +10,7 @@ import { Categoria } from './../../model/categoria';
 })
 export class CategoriaService {
 
-  private readonly API = `${environment.API}hashtag`
+  private readonly API = `${environment.API}categoria`
 
   constructor(private http: HttpClient) { }
 
