@@ -21,6 +21,7 @@ export class SalvarComponent implements OnInit {
   bsModalRef!: BsModalRef;
   categoria$!: Observable<Categoria[]>;
   has!: Hashtag;
+  cate!: Categoria;
 
   constructor(
     private serviceCategoria: CategoriaService,
@@ -37,12 +38,13 @@ export class SalvarComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(1)]],
-      categoria: [null, Validators.required],
+      categoria: [null],
+      addCategoria: [null],
 
     });
   }
 
-  onSubmit(){
+  onSubmit() {
 
 
 
@@ -51,24 +53,41 @@ export class SalvarComponent implements OnInit {
 
       this.has = new Hashtag();
       this.has.nome = this.formulario.value['nome'];
-      this.has.categoria = this.formulario.value['categoria']
+      if (this.formulario.value['addCategoria']) {
 
-      this.serviceHashtag.salvar(this.has).subscribe(
+        this.cate = new Categoria();
+        this.cate.nome = this.formulario.value['addCategoria']
 
-        success => {
-
-          this.formulario.reset();
-          this.router.navigate(['hashtag']);
-
-        },
-        erro => {
+        this.has.categoria = this.cate
 
 
-          this.handleError('Erro ao salvar');
+      } else {
+        this.has.categoria = this.formulario.value['categoria']
+      }
 
-        }
+      if (this.formulario.value['addCategoria'] || this.formulario.value['categoria']) {
 
-      );
+
+
+
+        this.serviceHashtag.salvar(this.has).subscribe(
+
+          success => {
+
+            this.formulario.reset();
+            this.router.navigate(['hashtag']);
+
+          },
+          erro => {
+
+
+            this.handleError('Erro ao salvar');
+
+          }
+
+        );
+
+      }
 
     }
 

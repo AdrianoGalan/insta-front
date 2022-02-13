@@ -22,7 +22,7 @@
     </div>
 
     <div class="row md-6">
-      <label for="categoria" class="col-sm-3 col-form-label">Categoria:</label>
+      <label for="categoria" class="col-sm-3 col-form-label">Sel Categoria:</label>
       <div class="col-sm-9">
         <select style="margin: 5px" id="categoria" class="form-control" formControlName="categoria">
           <option *ngFor="let cat of categoria" [ngValue]="cat">{{ cat.nome }}</option>
@@ -30,12 +30,21 @@
       </div>
     </div>
 
-    
+    <div class="row md-6">
+      <label for="nome" class="col-sm-3 col-form-label">add Categoria:</label>
+      <div class="col-sm-9">
+        <input style="margin: 5px" type="text" class="form-control" formControlName="addCategoria" />
+      </div>
+    </div>
+
+
+
 
 
 
 
     <button type="submit" class="btn btn-primary">Salvar</button>
+
   </form>
 </div>
 
