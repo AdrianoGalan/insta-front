@@ -15,10 +15,35 @@ export class ListarComponent implements OnInit {
 
   constructor(private hasservice: HashtagService) {
 
+    this.hashtags$ = this.hasservice.list();
+
    }
 
   ngOnInit(): void {
-    
+
+    this.hashtags$ = this.hasservice.list();
+
+  }
+
+  onDeletar(has: Hashtag){
+
+    this.hasservice.deletar(has.id).subscribe(
+
+      success => {
+
+        //this.handleError('Funcionario Deletado');
+        this.ngOnInit();
+
+      },
+      erro => {
+
+       // this.handleError('Erro ao Deletar');
+
+
+      }
+
+    );
+
   }
 
 }

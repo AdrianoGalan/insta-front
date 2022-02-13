@@ -1,7 +1,8 @@
+import { Categoria } from './categoria';
 export class Hashtag {
 
   id!: string;
-  hash!: string;
-  categoria!: string;
+  nome!: string;
+  categoria!: Categoria;
 
 }

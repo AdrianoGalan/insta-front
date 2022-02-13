@@ -28,4 +28,10 @@ export class HashtagService {
 
     return this.http.post(this.API, JSON.stringify(hashtag), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
   }
+
+  deletar(idHashtag: string){
+
+    return this.http.delete(`${this.API}/deletar/${idHashtag}`).pipe(take(1));
+
+  }
 }

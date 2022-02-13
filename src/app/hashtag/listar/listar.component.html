@@ -1,15 +1,11 @@
 <div class="container">
-  <legend>Ordem de Serviço</legend><br>
+  <legend>Lista de Hashtag</legend><br>
   <nav class="navbar navbar-light bg-light">
-    <!-- <div class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Busca os/sigla" aria-label="Search"
-        [formControl]="queryField" />
-
-      <button class="btn btn-outline-success my-2 my-sm-0" (click)="buscar()">Procurar</button>
-      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'cadastrar'">
-        Novo
+    <div class="form-inline">
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'addhashtag'">
+        Add
       </button>
-    </div> -->
+    </div>
   </nav>
 
   <div class="container">
@@ -25,16 +21,14 @@
       <tbody>
         <tr *ngFor="let h of has">
           <td>{{ h.id }}</td>
-          <td>{{ h.hash }}</td>
-          <td>{{ h.categoria }}</td>
-
-          <!-- <td *ngIf="permissao > 1">
+          <td>{{ h.nome }}</td>
+          <td>{{ h.categoria.nome }}</td>
             <span class="float-end">
-              <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="'finalizar/' + o.id" *ngIf="o.statusOs == 'A'">
-                Finalizar
+              <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onDeletar(h)" >
+                Remover
               </button>
             </span>
-          </td> -->
+
         </tr>
       </tbody>
     </table>
