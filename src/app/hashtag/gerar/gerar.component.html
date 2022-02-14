@@ -1,1 +1,50 @@
-<p>gerar works!</p>
+<div class="container">
+  <legend>Hashtag</legend><br>
+  <nav class="navbar navbar-light bg-light">
+    <div class="col-sm-1">
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/hashtag/addhashtag'">
+        Add
+      </button>
+    </div>
+    <div class="col-sm-11">
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/hashtag/listar'">
+        Listar
+      </button>
+    </div>
+  </nav>
+</div>
+
+<div class="container" style="padding-top: 10px; width: 60%">
+
+  <legend>Gerar do hashtags</legend>
+
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" *ngIf="categoria$ | async as categoria; else loading">
+
+    <div class="row md-5">
+      <label for="categoria" class="col-sm-3 col-form-label">Sel Categoria:</label>
+      <div class="col-sm-8">
+        <select style="margin: 5px" id="categoria" class="form-control" formControlName="categoria">
+          <option *ngFor="let cat of categoria" [ngValue]="cat">{{ cat.nome }}</option>
+        </select>
+      </div>
+
+      <div class="row md-6">
+        <label for="nome" class="col-sm-3 col-form-label">Hashtages:</label>
+        <div class="col-sm-9">
+          <textarea style="margin: 5px" type="text" class="form-control"
+            formControlName="hashtag">{{ geradas }}</textarea>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Gerar</button>
+
+
+  </form>
+</div>
+
+<ng-template #loading>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

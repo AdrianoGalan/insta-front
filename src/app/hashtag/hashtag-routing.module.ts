@@ -7,7 +7,7 @@ import { SalvarComponent } from './salvar/salvar.component';
 
 
 const routes: Routes = [
-  { path: '', component: ListarComponent},
+  { path: '', component: GerarComponent},
   { path: 'listar', component: ListarComponent},
   { path: 'addhashtag', component: SalvarComponent},
   { path: 'gerarhashtag', component: GerarComponent}

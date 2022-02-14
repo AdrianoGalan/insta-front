@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/model/categoria';
 import { Hashtag } from 'src/app/model/hashtag';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
+import { NovaCategoriaComponent } from '../nova-categoria/nova-categoria.component';
 
 import { CategoriaService } from '../service/categoria.service';
 import { HashtagService } from '../service/hashtag.service';
@@ -91,6 +92,9 @@ export class SalvarComponent implements OnInit {
 
     }
 
+  }
+  addCategoria(){
+    this.bsModalRef = this.modalService.show(NovaCategoriaComponent);
   }
 
   handleError(msg: string) {
