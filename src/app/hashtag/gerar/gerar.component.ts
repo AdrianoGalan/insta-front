@@ -8,11 +8,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-gerar',
   templateUrl: './gerar.component.html',
-  styleUrls: ['./gerar.component.css']
+  styleUrls: ['./gerar.component.css'],
 })
 export class GerarComponent implements OnInit {
-
-  geradas: string = "";
+  geradas!: Observable<string>;
   categoria$!: Observable<Categoria[]>;
   formulario!: FormGroup;
 
@@ -20,27 +19,23 @@ export class GerarComponent implements OnInit {
     private formBuilder: FormBuilder,
     private serviceCategoria: CategoriaService,
     private hashtagService: HashtagService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-
     this.categoria$ = this.serviceCategoria.list();
 
     this.formulario = this.formBuilder.group({
       hashtag: [null],
-      categoria: [null , [Validators.required, Validators.minLength(1)]]
+      categoria: [null, [Validators.required, Validators.minLength(1)]],
     });
   }
   onSubmit() {
-
     if (this.formulario.valid) {
+      let cat: Categoria = this.formulario.value['categoria'];
 
-      let cat: Categoria =this.formulario.value['categoria']
-
-      this.formulario.value['hashtag'] = this.hashtagService.gerar(cat.nome).subscribe()
-
+      this.hashtagService
+        .gerar(cat.id)
+        .subscribe((has) => this.formulario.controls['hashtag'].setValue(has));
     }
-
   }
-
 }
