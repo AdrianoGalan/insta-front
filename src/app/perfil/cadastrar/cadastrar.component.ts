@@ -44,6 +44,7 @@ export class CadastrarComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       username: [null, [Validators.required, Validators.minLength(1)]],
       senha: [null, [Validators.required, Validators.minLength(1)]],
+      dispositivo: [null, [Validators.required, Validators.minLength(1)]],
       status: [null, [Validators.required, Validators.minLength(1)]],
       email: [null, [Validators.required, Validators.minLength(1)]],
       nome: [null, [Validators.required, Validators.minLength(1)]],
@@ -67,6 +68,8 @@ export class CadastrarComponent implements OnInit {
       let perfil: Perfil = new Perfil()
 
       perfil.username = this.formulario.value['username'];
+      perfil.senha = this.formulario.value['senha'];
+      perfil.dispositivo = this.formulario.value['dispositivo'];
       perfil.email = this.formulario.value['email'];
       perfil.status = this.formulario.value['status'];
       perfil.nome = this.formulario.value['nome'];

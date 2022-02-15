@@ -25,15 +25,25 @@
       </div>
     </div>
 
+
     <div class="row md-6">
       <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-4">
         <input style="margin: 5px" type="text" class="form-control" formControlName="senha"
           placeholder="Digite a senha" [ngClass]="{ 'is-invalid': submitted && hasError('senha')}">
         <div class="invalid-feedback">
           Digite a Senha
         </div>
       </div>
+      <label for="genero" class="col-sm-2 col-form-label">Dispositivo:</label>
+      <div class="col-sm-4">
+        <input style="margin: 5px" type="text" class="form-control" formControlName="dispositivo"
+          placeholder="Digite o dispositivo" [ngClass]="{ 'is-invalid': submitted && hasError('dispositivo')}">
+        <div class="invalid-feedback">
+          Digite o dispositivo
+        </div>
+      </div>
+
     </div>
 
     <div class="row md-5" *ngIf="email$ | async as email; else loading">
@@ -100,9 +110,9 @@
       <label for="sobrenome" class="col-sm-2 col-form-label">SobreNome:</label>
       <div class="col-sm-10">
         <input style="margin: 5px" type="text" class="form-control" formControlName="sobrenome"
-          placeholder="Digite o sobre nome" [ngClass]="{ 'is-invalid': submitted && hasError('sobrenome')}">
+          placeholder="Digite o sobrenome" [ngClass]="{ 'is-invalid': submitted && hasError('sobrenome')}">
         <div class="invalid-feedback">
-          Digite o sobre Nome
+          Digite o sobrenome
         </div>
       </div>
     </div>
@@ -111,20 +121,20 @@
       <label for="numeroSeguidor" class="col-sm-2 col-form-label">nSeguidores:</label>
       <div class="col-sm-4">
         <input style="margin: 5px" type="number" class="form-control" formControlName="numeroSeguidor"
-          placeholder="Digite o nomero de seguidores"
+          placeholder="Digite o numero de seguidores"
           [ngClass]="{ 'is-invalid': submitted && hasError('numeroSeguidor')}">
         <div class="invalid-feedback">
-          Digite o nomero de seguidores
+          Digite o numero de seguidores
         </div>
       </div>
 
       <label for="numeroSeguindo" class="col-sm-2 col-form-label">nSeguindo:</label>
       <div class="col-sm-4">
         <input style="margin: 5px" type="number" class="form-control" formControlName="numeroSeguindo"
-          placeholder="Digite o nomero contas seguidas"
+          placeholder="Digite o numero contas seguidas"
           [ngClass]="{ 'is-invalid': submitted && hasError('numeroSeguindo')}">
         <div class="invalid-feedback">
-          Digite o nomero de contas seguidas
+          Digite o numero de contas seguidas
         </div>
       </div>
 

@@ -12,23 +12,23 @@
     <table class="table table-hover" *ngIf="perfil$ | async as perfil; else loading">
       <thead>
         <tr>
-          <th>Id</th>
           <th>Status</th>
           <th>UserName</th>
-          <th>Nome</th>
+          <th>Senha</th>
           <th>Email</th>
           <th>Dispositivo</th>
+          <th>Data Criaçao</th>
           <th>Total: {{ perfil.length }}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let p of perfil">
-          <td>{{ p.id }}</td>
           <td>{{ p.status.status }}</td>
           <td>{{ p.username }}</td>
-          <td>{{ p.nome }}</td>
+          <td>{{ p.senha }}</td>
           <td>{{ p.email.email }}</td>
           <td>{{ p.dispositivo }}</td>
+          <td>{{ p.dataCriacao }}</td>
             <span class="float-end">
               <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onAtualizar(p)" >
                 Atualizar
