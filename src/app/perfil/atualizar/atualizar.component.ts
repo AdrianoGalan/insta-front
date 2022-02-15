@@ -50,12 +50,29 @@ export class AtualizarComponent implements OnInit {
         this.perfilService.gerByUsername(username).subscribe(
           p => {
             this.perfil = p ;
+            this.povoar();
 
           }
         );
 
       }
     );
+
+  }
+
+  povoar(){
+
+    this.formulario.get('username')?.setValue(this.perfil.username);
+    this.formulario.controls['senha'].setValue(this.perfil.senha);
+    this.formulario.controls['dispositivo'].setValue(this.perfil.dispositivo);
+    this.formulario.get('email')?.setValue(this.perfil.email.email);
+    this.formulario.get('status')?.setValue(this.perfil.status.status);
+    this.formulario.controls['nome'].setValue(this.perfil.nome);
+    this.formulario.controls['sobrenome'].setValue(this.perfil.sobreNome);
+    this.formulario.controls['numeroSeguidor'].setValue(this.perfil.numeroSeguidor);
+    this.formulario.controls['numeroSeguindo'].setValue(this.perfil.numeroSeguindo);
+    this.formulario.controls['dataCriacao'].setValue(this.perfil.dataCriacao);
+    this.formulario.controls['genero'].setValue(this.perfil.genero);
 
   }
 

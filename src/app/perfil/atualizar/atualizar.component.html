@@ -10,7 +10,7 @@
 </div>
 <div class="container" style="padding-top: 10px; width: 60%">
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-    <legend>Cadastro de Perfil</legend>
+    <legend>Atualizar de Perfil: {{ perfil.username }}</legend>
 
 
 
@@ -51,7 +51,7 @@
       <div class="col-sm-8">
         <select style="margin: 5px" id="email" class="form-control" formControlName="email"
           [ngClass]="{ 'is-invalid': submitted && hasError('email')}">
-          <option *ngFor="let em of email" [ngValue]="em">{{ em.email }}</option>
+          <option *ngFor="let em of email" ([ngValue])="em">{{ em.email }}</option>
         </select>
         <div class="invalid-feedback">
           Seleciona um email
@@ -73,7 +73,7 @@
       <div class="col-sm-8">
         <select style="margin: 5px" id="status" class="form-control" formControlName="status"
           [ngClass]="{ 'is-invalid': submitted && hasError('status')}">
-          <option *ngFor="let s of status" [ngValue]="s">{{ s.status }}</option>
+          <option *ngFor="let s of status" ([ngValue])="s">{{ s.status }}</option>
         </select>
         <div class="invalid-feedback">
           Seleciona um status
