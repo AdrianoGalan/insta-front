@@ -8,6 +8,7 @@ import { ListarComponent } from './listar/listar.component';
 import { PerfilRoutingModule } from './perfil-routing.module';
 import { NovoEmailComponent } from './novo-email/novo-email.component';
 import { NovoStatusComponent } from './novo-status/novo-status.component';
+import { AtualizarComponent } from './atualizar/atualizar.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NovoStatusComponent } from './novo-status/novo-status.component';
     CadastrarComponent,
     ListarComponent,
     NovoEmailComponent,
-    NovoStatusComponent
+    NovoStatusComponent,
+    AtualizarComponent
   ],
   imports: [
     CommonModule,

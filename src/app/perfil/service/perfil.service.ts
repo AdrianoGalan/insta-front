@@ -17,6 +17,11 @@ export class PerfilService {
     return this.http.get<Perfil[]>(this.API).pipe(take(1));
   }
 
+  gerByUsername(username: string){
+
+    return this.http.get<Perfil>(`${this.API}/${username}`).pipe(take(1));
+  }
+
   salvar(perfil: Perfil) {
 
     return this.http.post(this.API, JSON.stringify(perfil), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));

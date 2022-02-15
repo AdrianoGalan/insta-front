@@ -22,8 +22,4 @@ export class ListarComponent implements OnInit {
 
   }
 
-  onAtualizar(perfil: Perfil){
-
-  }
-
 }

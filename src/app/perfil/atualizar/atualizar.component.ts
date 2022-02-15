@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Email } from 'src/app/model/email';
 import { Perfil } from 'src/app/model/perfil';
 import { Status } from 'src/app/model/status';
@@ -15,26 +15,49 @@ import { PerfilService } from './../service/perfil.service';
 import { StatusService } from './../service/status.service';
 
 @Component({
-  selector: 'app-cadastrar',
-  templateUrl: './cadastrar.component.html',
-  styleUrls: ['./cadastrar.component.css']
+  selector: 'app-atualizar',
+  templateUrl: './atualizar.component.html',
+  styleUrls: ['./atualizar.component.css']
 })
-export class CadastrarComponent implements OnInit {
+export class AtualizarComponent implements OnInit {
 
+  inscricao: Subscription;
   formulario!: FormGroup;
   bsModalRef!: BsModalRef;
   email$!: Observable<Email[]>;
   status$!: Observable<Status[]>;
-  submitted: boolean = false
+  submitted: boolean = false;
+  perfil: Perfil;
 
   constructor(
     private formBuilder: FormBuilder,
     private emailService: EmailService,
     private router: Router,
+    private route: ActivatedRoute,
     private modalService: BsModalService,
     private perfilService: PerfilService,
     private statusSevice: StatusService
-  ) { }
+  ) {
+
+    this.perfil = new Perfil();
+
+    this.inscricao = this.route.params.subscribe(
+      (params: any) => {
+
+        let username = params['username'];
+
+
+        this.perfilService.gerByUsername(username).subscribe(
+          p => {
+            this.perfil = p ;
+
+          }
+        );
+
+      }
+    );
+
+  }
 
   ngOnInit(): void {
 
@@ -65,21 +88,21 @@ export class CadastrarComponent implements OnInit {
     this.submitted = true
     if (this.formulario.valid) {
 
-      let perfil: Perfil = new Perfil()
 
-      perfil.username = this.formulario.value['username'];
-      perfil.senha = this.formulario.value['senha'];
-      perfil.dispositivo = this.formulario.value['dispositivo'];
-      perfil.email = this.formulario.value['email'];
-      perfil.status = this.formulario.value['status'];
-      perfil.nome = this.formulario.value['nome'];
-      perfil.sobreNome = this.formulario.value['sobrenome'];
-      perfil.genero = this.formulario.value['genero'];
-      perfil.dataCriacao = this.formulario.value['dataCriacao'];
-      perfil.numeroSeguidor = this.formulario.value['numeroSeguidor'];
-      perfil.numeroSeguindo = this.formulario.value['numeroSeguindo'];
 
-      this.perfilService.salvar(perfil).subscribe(
+      this.perfil.username = this.formulario.value['username'];
+      this.perfil.senha = this.formulario.value['senha'];
+      this.perfil.dispositivo = this.formulario.value['dispositivo'];
+      this.perfil.email = this.formulario.value['email'];
+      this.perfil.status = this.formulario.value['status'];
+      this.perfil.nome = this.formulario.value['nome'];
+      this.perfil.sobreNome = this.formulario.value['sobrenome'];
+      this.perfil.genero = this.formulario.value['genero'];
+      this.perfil.dataCriacao = this.formulario.value['dataCriacao'];
+      this.perfil.numeroSeguidor = this.formulario.value['numeroSeguidor'];
+      this.perfil.numeroSeguindo = this.formulario.value['numeroSeguindo'];
+
+      this.perfilService.salvar(this.perfil).subscribe(
 
         success => {
 
