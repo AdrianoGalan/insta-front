@@ -1,1 +1,165 @@
-<p>cadastrar works!</p>
+<div class="container">
+  <legend>Perfil</legend><br>
+  <nav class="navbar navbar-light bg-light">
+    <div class="form-inline">
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/hashtag'">
+        voltar
+      </button>
+    </div>
+  </nav>
+</div>
+<div class="container" style="padding-top: 10px; width: 60%">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <legend>Cadastro de Perfil</legend>
+
+
+
+    <div class="row md-6">
+      <label for="username" class="col-sm-2 col-form-label">Username:</label>
+      <div class="col-sm-10">
+        <input style="margin: 5px" type="text" class="form-control" formControlName="username"
+          placeholder="Digite o login" [ngClass]="{ 'is-invalid': submitted && hasError('username')}">
+        <div class="invalid-feedback">
+          Digite o Usernarme
+        </div>
+      </div>
+    </div>
+
+    <div class="row md-6">
+      <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
+      <div class="col-sm-10">
+        <input style="margin: 5px" type="text" class="form-control" formControlName="senha"
+          placeholder="Digite a senha" [ngClass]="{ 'is-invalid': submitted && hasError('senha')}">
+        <div class="invalid-feedback">
+          Digite a Senha
+        </div>
+      </div>
+    </div>
+
+    <div class="row md-5" *ngIf="email$ | async as email; else loading">
+      <label for="email" class="col-sm-2 col-form-label">Email:</label>
+      <div class="col-sm-8">
+        <select style="margin: 5px" id="email" class="form-control" formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && hasError('email')}">
+          <option *ngFor="let em of email" [ngValue]="em">{{ em.email }}</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um email
+        </div>
+      </div>
+
+      <div class="col-sm-1">
+        <i (click)="addEmail()" class="bi bi-plus-circle-fill" style="font-size: 2rem; color: rgb(30, 126, 11)"
+          tooltip="adicionar nova categoria"></i>
+      </div>
+      <div class="col-sm-1">
+        <i (click)="atualizarListaEmail()" class="bi bi-arrow-repeat" style="font-size: 2rem; color: rgb(30, 126, 11)"
+          tooltip="Atualizar Lista de Emails"></i>
+      </div>
+    </div>
+
+    <div class="row md-5"  *ngIf="status$ | async as status; else loading">
+      <label for="status" class="col-sm-2 col-form-label">Status:</label>
+      <div class="col-sm-8">
+        <select style="margin: 5px" id="status" class="form-control" formControlName="status"
+          [ngClass]="{ 'is-invalid': submitted && hasError('status')}">
+          <option *ngFor="let s of status" [ngValue]="s">{{ s.status }}</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um status
+        </div>
+      </div>
+
+      <div class="col-sm-1">
+        <i (click)="addStatus()" class="bi bi-plus-circle-fill" style="font-size: 2rem; color: rgb(30, 126, 11)"
+          tooltip="adicionar novo Status"></i>
+      </div>
+      <div class="col-sm-1">
+        <i (click)="atualizarListaStatus()" class="bi bi-arrow-repeat" style="font-size: 2rem; color: rgb(30, 126, 11)"
+          tooltip="Atualizar Lista de Status"></i>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="row md-6">
+      <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
+      <div class="col-sm-10">
+        <input style="margin: 5px" type="text" class="form-control" formControlName="nome"
+          placeholder="Digite o Primeiro nome" [ngClass]="{ 'is-invalid': submitted && hasError('nome')}">
+        <div class="invalid-feedback">
+          Digite o Primeiro Nome
+        </div>
+      </div>
+    </div>
+
+    <div class="row md-6">
+      <label for="sobrenome" class="col-sm-2 col-form-label">SobreNome:</label>
+      <div class="col-sm-10">
+        <input style="margin: 5px" type="text" class="form-control" formControlName="sobrenome"
+          placeholder="Digite o sobre nome" [ngClass]="{ 'is-invalid': submitted && hasError('sobrenome')}">
+        <div class="invalid-feedback">
+          Digite o sobre Nome
+        </div>
+      </div>
+    </div>
+
+    <div class="row md-6">
+      <label for="numeroSeguidor" class="col-sm-2 col-form-label">nSeguidores:</label>
+      <div class="col-sm-4">
+        <input style="margin: 5px" type="number" class="form-control" formControlName="numeroSeguidor"
+          placeholder="Digite o nomero de seguidores"
+          [ngClass]="{ 'is-invalid': submitted && hasError('numeroSeguidor')}">
+        <div class="invalid-feedback">
+          Digite o nomero de seguidores
+        </div>
+      </div>
+
+      <label for="numeroSeguindo" class="col-sm-2 col-form-label">nSeguindo:</label>
+      <div class="col-sm-4">
+        <input style="margin: 5px" type="number" class="form-control" formControlName="numeroSeguindo"
+          placeholder="Digite o nomero contas seguidas"
+          [ngClass]="{ 'is-invalid': submitted && hasError('numeroSeguindo')}">
+        <div class="invalid-feedback">
+          Digite o nomero de contas seguidas
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row md-6">
+      <label for="dataCriacao" class="col-sm-2 col-form-label">Data Criacao:</label>
+      <div class="col-sm-4">
+        <input style="margin: 5px" type="date" class="form-control" formControlName="dataCriacao"
+          placeholder="Digite a data de criacao" [ngClass]="{ 'is-invalid': submitted && hasError('dataCriacao')}">
+        <div class="invalid-feedback">
+          Digite a data de ciação da conta
+        </div>
+      </div>
+
+      <label for="genero" class="col-sm-2 col-form-label">Genero:</label>
+      <div class="col-sm-4">
+        <select style="margin: 5px" id="genero" class="form-control" formControlName="genero"
+          [ngClass]="{ 'is-invalid': submitted && hasError('genero')}">
+          <option value="F">Feminino</option>
+          <option value="M">Masculino</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um Genero
+        </div>
+      </div>
+    </div>
+
+    <button style="float:right; margin-top: 10px" type="submit" class="btn btn-primary">Salvar</button>
+
+  </form>
+</div>
+
+<ng-template #loading>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

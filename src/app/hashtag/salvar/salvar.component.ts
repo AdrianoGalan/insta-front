@@ -39,8 +39,7 @@ export class SalvarComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       nome: [null, [Validators.required, Validators.minLength(1)]],
-      categoria: [null],
-      addCategoria: [null],
+      categoria: [null]
 
     });
   }

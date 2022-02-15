@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Novo Status</h4>
+  <button
+    type="button"
+    class="close btn-close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+
+<div class="modal-body">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <legend>Cadastro de Status</legend>
+
+    <div class="row md-6">
+      <label for="status" class="col-sm-3 col-form-label">/Status:</label>
+      <div class="col-sm-9">
+        <input
+          style="margin: 5px"
+          type="status"
+          class="form-control"
+          formControlName="status"
+
+        />
+        <div class="invalid-feedback">Digite o Status</div>
+      </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+</div>

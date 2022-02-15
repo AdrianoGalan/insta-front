@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Novo Email</h4>
+  <button
+    type="button"
+    class="close btn-close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+
+
+<div class="modal-body">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <legend>Cadastro de Email</legend>
+
+    <div class="row md-6">
+      <label for="email" class="col-sm-3 col-form-label">Email:</label>
+      <div class="col-sm-9">
+        <input
+          style="margin: 5px"
+          type="email"
+          class="form-control"
+          formControlName="email"
+
+        />
+        <div class="invalid-feedback">Digite a Categoria</div>
+      </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+</div>
+

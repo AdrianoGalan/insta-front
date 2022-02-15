@@ -1,52 +1,48 @@
-import { AlertModalComponent } from './../../shared/alert-modal/alert-modal.component';
-import { Categoria } from './../../model/categoria';
-import { CategoriaService } from './../service/categoria.service';
 import { Component, OnInit } from '@angular/core';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Email } from 'src/app/model/email';
+import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
+
+import { EmailService } from '../service/email.service';
 
 @Component({
-  selector: 'app-nova-categoria',
-  templateUrl: './nova-categoria.component.html',
-  styleUrls: ['./nova-categoria.component.css']
+  selector: 'app-novo-email',
+  templateUrl: './novo-email.component.html',
+  styleUrls: ['./novo-email.component.css']
 })
-export class NovaCategoriaComponent implements OnInit {
+export class NovoEmailComponent implements OnInit {
 
   formulario!: FormGroup;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     public bsModalRef: BsModalRef,
-    private categoriaService: CategoriaService,
+    private emailService: EmailService,
     private modalService: BsModalService
-  ) {
+  ) { }
 
+  ngOnInit(): void {
     this.formulario = this.formBuilder.group({
 
-      nome: [null, [Validators.required, Validators.minLength(3)]]
+      email: [null, [Validators.required, Validators.minLength(3)]]
 
 
     });
 
-   }
-
-  ngOnInit(): void {
-
-
   }
 
-  onSubmit(){
+  onSubmit() {
 
     if (this.formulario.valid) {
 
 
 
 
-      let categoria: Categoria = new Categoria();
-      categoria.nome = this.formulario.value['nome'];
+      let email: Email = new Email();
+      email.email = this.formulario.value['email'];
 
-      this.categoriaService.salvar(categoria).subscribe(
+      this.emailService.salvar(email).subscribe(
         success => {
 
 
@@ -59,7 +55,6 @@ export class NovaCategoriaComponent implements OnInit {
         }
       )
     }
-
 
 
   }
