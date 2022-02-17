@@ -1,5 +1,5 @@
 <div class="container">
-  <legend>Perfil</legend><br>
+  <h1>Perfil</h1><br>
   <nav class="navbar navbar-light bg-light">
     <div class="form-inline">
       <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/perfil'">
@@ -8,6 +8,7 @@
     </div>
   </nav>
 </div>
+
 <div class="container" style="padding-top: 10px; width: 60%">
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <legend>Cadastro de Perfil</legend>

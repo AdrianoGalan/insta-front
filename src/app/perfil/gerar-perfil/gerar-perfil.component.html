@@ -1,0 +1,67 @@
+<div class="container">
+  <h1>Perfil</h1><br>
+  <nav class="navbar navbar-light bg-light">
+    <div class="form-inline">
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/perfil'">
+        Voltar
+      </button>
+
+    </div>
+  </nav>
+</div>
+
+
+<div class="container" style="padding-top: 10px; width: 60%">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+    <h2 style="padding-bottom: 30px;">Gerar Perfil</h2>
+
+
+
+    <div class="row md-5" *ngIf="email$ | async as email; else loading">
+      <label for="email" class="col-sm-1 col-form-label">Email:</label>
+      <div class="col-sm-6">
+        <select style="margin: 5px" id="email" class="form-control" formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && hasError('email')}">
+          <option *ngFor="let em of email" [ngValue]="em">{{ em.email }}</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um email
+        </div>
+      </div>
+
+      <label for="genero" class="col-sm-1 col-form-label">Genero:</label>
+      <div class="col-sm-3">
+        <select style="margin: 5px" id="genero" class="form-control" formControlName="genero"
+          [ngClass]="{ 'is-invalid': submitted && hasError('genero')}">
+          <option value="F">Feminino</option>
+          <option value="M">Masculino</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um Genero
+        </div>
+      </div>
+
+      <div class="col-sm-1">
+        <i (click)="onGerarPerfil()" class="bi bi-arrow-repeat" style="font-size: 2rem; color: rgb(30, 126, 11)"
+          tooltip="Gerar Perfil"></i>
+      </div>
+    </div>
+
+
+
+
+
+
+    <button style="float:right; margin-top: 10px" type="submit" class="btn btn-primary">Salvar</button>
+
+
+
+  </form>
+</div>
+
+<ng-template #loading>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

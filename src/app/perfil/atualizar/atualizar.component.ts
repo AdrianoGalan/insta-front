@@ -21,13 +21,13 @@ import { StatusService } from './../service/status.service';
 })
 export class AtualizarComponent implements OnInit {
 
-  inscricao: Subscription;
+  inscricao!: Subscription;
   formulario!: FormGroup;
   bsModalRef!: BsModalRef;
   email$!: Observable<Email[]>;
   status$!: Observable<Status[]>;
   submitted: boolean = false;
-  perfil: Perfil;
+  perfil!: Perfil;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,6 +37,7 @@ export class AtualizarComponent implements OnInit {
     private modalService: BsModalService,
     private perfilService: PerfilService,
     private statusSevice: StatusService
+
   ) {
 
     this.perfil = new Perfil();
@@ -49,8 +50,9 @@ export class AtualizarComponent implements OnInit {
 
         this.perfilService.gerByUsername(username).subscribe(
           p => {
-            this.perfil = p ;
-            this.povoar();
+
+            this.perfil = p
+            this.povoar(p)
 
           }
         );
@@ -58,28 +60,44 @@ export class AtualizarComponent implements OnInit {
       }
     );
 
-  }
 
-  povoar(){
 
-    this.formulario.get('username')?.setValue(this.perfil.username);
-    this.formulario.controls['senha'].setValue(this.perfil.senha);
-    this.formulario.controls['dispositivo'].setValue(this.perfil.dispositivo);
-    this.formulario.get('email')?.setValue(this.perfil.email.email);
-    this.formulario.get('status')?.setValue(this.perfil.status.status);
-    this.formulario.controls['nome'].setValue(this.perfil.nome);
-    this.formulario.controls['sobrenome'].setValue(this.perfil.sobreNome);
-    this.formulario.controls['numeroSeguidor'].setValue(this.perfil.numeroSeguidor);
-    this.formulario.controls['numeroSeguindo'].setValue(this.perfil.numeroSeguindo);
-    this.formulario.controls['dataCriacao'].setValue(this.perfil.dataCriacao);
-    this.formulario.controls['genero'].setValue(this.perfil.genero);
 
   }
+
+  povoar(p: Perfil) {
+
+
+
+    this.formulario.controls['username'].setValue(p.username);
+    this.formulario.controls['senha'].setValue(p.senha);
+    this.formulario.controls['dispositivo'].setValue(p.dispositivo);
+    this.formulario.controls['email'].setValue(p.email);
+    this.formulario.controls['status'].setValue(p.status);
+    this.formulario.controls['nome'].setValue(p.nome);
+    this.formulario.controls['sobrenome'].setValue(p.sobreNome);
+    this.formulario.controls['numeroSeguidor'].setValue(p.numeroSeguidor);
+    this.formulario.controls['numeroSeguindo'].setValue(p.numeroSeguindo);
+    this.formulario.controls['dataCriacao'].setValue(p.dataCriacao);
+    this.formulario.controls['genero'].setValue(p.genero);
+
+    this.formulario.controls['dataBloqueio'].setValue(p.dataBloqueio);
+    this.formulario.controls['dataInicioTrabalho'].setValue(p.dataInicioTrabalho);
+    this.formulario.controls['dataCadastro'].setValue(p.dataCadastro);
+
+
+
+
+
+  }
+
 
   ngOnInit(): void {
 
     this.email$ = this.emailService.list();
     this.status$ = this.statusSevice.list();
+
+
 
     this.formulario = this.formBuilder.group({
       username: [null, [Validators.required, Validators.minLength(1)]],
@@ -92,19 +110,28 @@ export class AtualizarComponent implements OnInit {
       genero: [null, [Validators.required]],
       dataCriacao: [null, [Validators.required]],
       numeroSeguidor: [null, [Validators.required]],
-      numeroSeguindo: [null, [Validators.required]]
+      numeroSeguindo: [null, [Validators.required]],
+
+      dataBloqueio: [null],
+      dataInicioTrabalho: [null ],
+      dataCadastro: [null]
 
 
 
     });
+
+
+
+
   }
+
 
   onSubmit() {
 
 
     this.submitted = true
+    
     if (this.formulario.valid) {
-
 
 
       this.perfil.username = this.formulario.value['username'];
@@ -118,8 +145,11 @@ export class AtualizarComponent implements OnInit {
       this.perfil.dataCriacao = this.formulario.value['dataCriacao'];
       this.perfil.numeroSeguidor = this.formulario.value['numeroSeguidor'];
       this.perfil.numeroSeguindo = this.formulario.value['numeroSeguindo'];
+      this.perfil.dataBloqueio = this.formulario.value['dataBloqueio'],
+      this.perfil.dataInicioTrabalho = this.formulario.value['dataInicioTrabalho'],
+      this.perfil.dataCadastro = this.formulario.value['dataCadastro'],
 
-      this.perfilService.salvar(this.perfil).subscribe(
+      this.perfilService.atualizar(this.perfil).subscribe(
 
         success => {
 
@@ -151,12 +181,12 @@ export class AtualizarComponent implements OnInit {
     this.email$ = this.emailService.list();
   }
 
-  addStatus(){
+  addStatus() {
 
     this.bsModalRef = this.modalService.show(NovoStatusComponent);
 
   }
-  atualizarListaStatus(){
+  atualizarListaStatus() {
 
     this.status$ = this.statusSevice.list();
 

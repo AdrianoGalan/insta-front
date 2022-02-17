@@ -9,6 +9,8 @@ import { PerfilRoutingModule } from './perfil-routing.module';
 import { NovoEmailComponent } from './novo-email/novo-email.component';
 import { NovoStatusComponent } from './novo-status/novo-status.component';
 import { AtualizarComponent } from './atualizar/atualizar.component';
+import { DetalheComponent } from './detalhe/detalhe.component';
+import { GerarPerfilComponent } from './gerar-perfil/gerar-perfil.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { AtualizarComponent } from './atualizar/atualizar.component';
     ListarComponent,
     NovoEmailComponent,
     NovoStatusComponent,
-    AtualizarComponent
+    AtualizarComponent,
+    DetalheComponent,
+    GerarPerfilComponent
   ],
   imports: [
     CommonModule,

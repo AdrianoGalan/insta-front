@@ -1,16 +1,18 @@
 <div class="container">
-  <legend>Perfil</legend><br>
+  <h1>Perfil</h1><br>
   <nav class="navbar navbar-light bg-light">
+    
     <div class="form-inline">
       <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/perfil'">
         voltar
       </button>
     </div>
+
   </nav>
 </div>
 <div class="container" style="padding-top: 10px; width: 60%">
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-    <legend>Atualizar de Perfil: {{ perfil.username }}</legend>
+    <legend style="padding-bottom: 20px;">Atualizar de Perfil: {{ perfil.username }}</legend>
 
 
 
@@ -18,7 +20,8 @@
       <label for="username" class="col-sm-2 col-form-label">Username:</label>
       <div class="col-sm-10">
         <input style="margin: 5px" type="text" class="form-control" formControlName="username"
-          placeholder="Digite o login" [ngClass]="{ 'is-invalid': submitted && hasError('username')}">
+          placeholder="Digite o login" [ngClass]="{ 'is-invalid': submitted && hasError('username')}"
+          [value]="perfil.username">
         <div class="invalid-feedback">
           Digite o Usernarme
         </div>
@@ -29,8 +32,8 @@
     <div class="row md-6">
       <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
       <div class="col-sm-4">
-        <input style="margin: 5px" type="text" class="form-control" formControlName="senha"
-          placeholder="Digite a senha" [ngClass]="{ 'is-invalid': submitted && hasError('senha')}">
+        <input style="margin: 5px" type="text" class="form-control" formControlName="senha" placeholder="Digite a senha"
+          [ngClass]="{ 'is-invalid': submitted && hasError('senha')}" [value]="perfil.senha">
         <div class="invalid-feedback">
           Digite a Senha
         </div>
@@ -38,7 +41,8 @@
       <label for="genero" class="col-sm-2 col-form-label">Dispositivo:</label>
       <div class="col-sm-4">
         <input style="margin: 5px" type="text" class="form-control" formControlName="dispositivo"
-          placeholder="Digite o dispositivo" [ngClass]="{ 'is-invalid': submitted && hasError('dispositivo')}">
+          placeholder="Digite o dispositivo" [ngClass]="{ 'is-invalid': submitted && hasError('dispositivo')}"
+          [value]="perfil.dispositivo">
         <div class="invalid-feedback">
           Digite o dispositivo
         </div>
@@ -51,7 +55,7 @@
       <div class="col-sm-8">
         <select style="margin: 5px" id="email" class="form-control" formControlName="email"
           [ngClass]="{ 'is-invalid': submitted && hasError('email')}">
-          <option *ngFor="let em of email" ([ngValue])="em">{{ em.email }}</option>
+          <option *ngFor="let em of email" [ngValue]="em">{{ em.email }}</option>
         </select>
         <div class="invalid-feedback">
           Seleciona um email
@@ -68,12 +72,12 @@
       </div>
     </div>
 
-    <div class="row md-5"  *ngIf="status$ | async as status; else loading">
+    <div class="row md-5" *ngIf="status$ | async as status; else loading">
       <label for="status" class="col-sm-2 col-form-label">Status:</label>
       <div class="col-sm-8">
         <select style="margin: 5px" id="status" class="form-control" formControlName="status"
-          [ngClass]="{ 'is-invalid': submitted && hasError('status')}">
-          <option *ngFor="let s of status" ([ngValue])="s">{{ s.status }}</option>
+          [ngClass]="{ 'is-invalid': submitted && hasError('status')}" [value]="perfil.status">
+          <option *ngFor="let s of status" [ngValue]="s">{{ s.status }}</option>
         </select>
         <div class="invalid-feedback">
           Seleciona um status
@@ -97,11 +101,23 @@
 
     <div class="row md-6">
       <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-4">
         <input style="margin: 5px" type="text" class="form-control" formControlName="nome"
-          placeholder="Digite o Primeiro nome" [ngClass]="{ 'is-invalid': submitted && hasError('nome')}">
+          placeholder="Digite o Primeiro nome" [ngClass]="{ 'is-invalid': submitted && hasError('nome')}"
+          [value]="perfil.nome">
         <div class="invalid-feedback">
           Digite o Primeiro Nome
+        </div>
+      </div>
+      <label for="genero" class="col-sm-2 col-form-label">Genero:</label>
+      <div class="col-sm-4">
+        <select style="margin: 5px" id="genero" class="form-control" formControlName="genero"
+          [ngClass]="{ 'is-invalid': submitted && hasError('genero')}" [value]="perfil.genero">
+          <option value="F">Feminino</option>
+          <option value="M">Masculino</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um Genero
         </div>
       </div>
     </div>
@@ -110,7 +126,8 @@
       <label for="sobrenome" class="col-sm-2 col-form-label">SobreNome:</label>
       <div class="col-sm-10">
         <input style="margin: 5px" type="text" class="form-control" formControlName="sobrenome"
-          placeholder="Digite o sobrenome" [ngClass]="{ 'is-invalid': submitted && hasError('sobrenome')}">
+          placeholder="Digite o sobrenome" [ngClass]="{ 'is-invalid': submitted && hasError('sobrenome')}"
+          [value]="perfil.sobreNome">
         <div class="invalid-feedback">
           Digite o sobrenome
         </div>
@@ -122,7 +139,7 @@
       <div class="col-sm-4">
         <input style="margin: 5px" type="number" class="form-control" formControlName="numeroSeguidor"
           placeholder="Digite o numero de seguidores"
-          [ngClass]="{ 'is-invalid': submitted && hasError('numeroSeguidor')}">
+          [ngClass]="{ 'is-invalid': submitted && hasError('numeroSeguidor')}" [value]="perfil.numeroSeguidor">
         <div class="invalid-feedback">
           Digite o numero de seguidores
         </div>
@@ -132,7 +149,7 @@
       <div class="col-sm-4">
         <input style="margin: 5px" type="number" class="form-control" formControlName="numeroSeguindo"
           placeholder="Digite o numero contas seguidas"
-          [ngClass]="{ 'is-invalid': submitted && hasError('numeroSeguindo')}">
+          [ngClass]="{ 'is-invalid': submitted && hasError('numeroSeguindo')}" [value]="perfil.numeroSeguindo">
         <div class="invalid-feedback">
           Digite o numero de contas seguidas
         </div>
@@ -144,23 +161,42 @@
       <label for="dataCriacao" class="col-sm-2 col-form-label">Data Criacao:</label>
       <div class="col-sm-4">
         <input style="margin: 5px" type="date" class="form-control" formControlName="dataCriacao"
-          placeholder="Digite a data de criacao" [ngClass]="{ 'is-invalid': submitted && hasError('dataCriacao')}">
+          placeholder="Digite a data de criacao" [ngClass]="{ 'is-invalid': submitted && hasError('dataCriacao')}"
+          [value]="perfil.dataCriacao">
         <div class="invalid-feedback">
           Digite a data de ciação da conta
         </div>
       </div>
 
-      <label for="genero" class="col-sm-2 col-form-label">Genero:</label>
+      <label for="dataCadastro" class="col-sm-2 col-form-label">Data Cadastro:</label>
       <div class="col-sm-4">
-        <select style="margin: 5px" id="genero" class="form-control" formControlName="genero"
-          [ngClass]="{ 'is-invalid': submitted && hasError('genero')}">
-          <option value="F">Feminino</option>
-          <option value="M">Masculino</option>
-        </select>
-        <div class="invalid-feedback">
-          Seleciona um Genero
-        </div>
+        <input style="margin: 5px" type="date" class="form-control" formControlName="dataCadastro"
+          placeholder="Digite a data de cadastro">
       </div>
+
+
+    </div>
+
+
+    <div class="row md-6">
+
+
+      <label for="dataInicioTrabalho" class="col-sm-2 col-form-label">Data Inicio Trabalho:</label>
+      <div class="col-sm-4">
+        <input style="margin: 5px" type="date" class="form-control" formControlName="dataInicioTrabalho"
+          placeholder="Digite a data de inicio do trabalho">
+      </div>
+
+
+      <label for="dataBloqueio" class="col-sm-2 col-form-label">Data Bloqueio:</label>
+      <div class="col-sm-4">
+        <input style="margin: 5px" type="date" class="form-control" formControlName="dataBloqueio"
+          placeholder="Digite a data de bloqueio">
+      </div>
+
+
+
+
     </div>
 
     <button style="float:right; margin-top: 10px" type="submit" class="btn btn-primary">Salvar</button>

@@ -17,6 +17,13 @@ export class StatusService {
     return this.http.get<Status[]>(this.API).pipe(take(1));
   }
 
+  getStatus(status: String){
+
+    return this.http.get<Status>(`${this.API}/${status}`).pipe(take(1));
+
+
+  }
+
   salvar(status: Status) {
 
     return this.http.post(this.API, JSON.stringify(status), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
