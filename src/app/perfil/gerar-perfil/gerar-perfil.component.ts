@@ -58,8 +58,12 @@ export class GerarPerfilComponent implements OnInit {
     this.formulario = this.formBuilder.group({
 
       email: [null, [Validators.required, Validators.minLength(1)]],
+      genero: [null, [Validators.required]],
       username: [null],
-      genero: [null, [Validators.required]]
+      senha: [null],
+      nome: [null],
+      sobrenome: [null],
+      dispositivo: [null],
 
     });
 
@@ -72,10 +76,14 @@ export class GerarPerfilComponent implements OnInit {
     if (this.formulario.valid) {
 
 
-      this.perfil.dispositivo = 'novo';
+
       this.perfil.numeroSeguidor = '0';
       this.perfil.numeroSeguindo = '0';
-      this.perfil.username = this.formulario.value['username']
+      this.perfil.username = this.formulario.value['username'];
+      this.perfil.senha = this.formulario.value['senha'];
+      this.perfil.dispositivo = this.formulario.value['dispositivo'];
+      this.perfil.nome = this.formulario.value['nome'];
+      this.perfil.sobreNome = this.formulario.value['sobrenome'];
 
       console.log(this.perfil)
 
@@ -122,12 +130,15 @@ export class GerarPerfilComponent implements OnInit {
       this.perfilGeradoService.gerar(this.perfil.genero).subscribe(
         p => {
 
-          this.perfil.nome = p.nome;
-          this.perfil.sobreNome = p.sobrenome;
+
           this.perfil.dataCriacao = p.dataCriacao;
-          this.perfil.senha = p.senha;
+
 
           this.formulario.controls['username'].setValue(p.username);
+          this.formulario.controls['senha'].setValue(p.senha);
+          this.formulario.controls['dispositivo'].setValue('novo');
+          this.formulario.controls['nome'].setValue(p.nome);
+          this.formulario.controls['sobrenome'].setValue(p.sobrenome);
 
         }
       );

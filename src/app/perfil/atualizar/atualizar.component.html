@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Perfil</h1><br>
   <nav class="navbar navbar-light bg-light">
-    
+
     <div class="form-inline">
       <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/perfil'">
         voltar
@@ -47,7 +47,6 @@
           Digite o dispositivo
         </div>
       </div>
-
     </div>
 
     <div class="row md-5" *ngIf="email$ | async as email; else loading">
