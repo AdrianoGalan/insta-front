@@ -60,6 +60,7 @@ export class GerarPerfilComponent implements OnInit {
       email: [null, [Validators.required, Validators.minLength(1)]],
       genero: [null, [Validators.required]],
       username: [null],
+      biografia: [null],
       senha: [null],
       nome: [null],
       sobrenome: [null],
@@ -139,6 +140,7 @@ export class GerarPerfilComponent implements OnInit {
           this.formulario.controls['dispositivo'].setValue('novo');
           this.formulario.controls['nome'].setValue(p.nome);
           this.formulario.controls['sobrenome'].setValue(p.sobrenome);
+          this.formulario.controls['biografia'].setValue(p.bio);
 
         }
       );
