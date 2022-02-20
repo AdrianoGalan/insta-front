@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs';
 import { Perfil } from 'src/app/model/perfil';
+import { Status } from 'src/app/model/status';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -15,6 +16,18 @@ export class PerfilService {
 
   list() {
     return this.http.get<Perfil[]>(this.API).pipe(take(1));
+  }
+
+  listByStatus(idStatus: string){
+
+    return this.http.get<Perfil[]>(`${this.API}/status/${idStatus}`).pipe(take(1));
+
+  }
+
+  listDifBloqueado(idStatus: string){
+
+    return this.http.get<Perfil[]>(`${this.API}/status/bloqueado/${idStatus}`).pipe(take(1));
+
   }
 
   gerByUsername(username: string){

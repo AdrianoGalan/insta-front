@@ -8,7 +8,25 @@
       <button style="margin-left: 15px;" class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/perfil/gerar'">
         Gerar
       </button>
+      <button style="margin-left: 15px;" class="btn btn-outline-success my-2 my-sm-0" (click)="onListar()">
+        Listar todos
+      </button>
     </div>
+
+    <div class="row md-5" *ngIf="status$ | async as status; else loading">
+      <div class="col-sm-8">
+        <select style="margin: 5px" id="status" class="form-control" [(ngModel)]="inputStatus">
+          <option *ngFor="let s of status" [ngValue]="s">{{ s.status }}</option>
+        </select>
+      </div>
+      <div class="col-sm-3">
+        <button  class="btn btn-outline-success my-2 my-sm-0" (click)="onFiltrar()">
+          Filtrar
+        </button>
+      </div>
+
+    </div>
+
   </nav>
 
   <div class="container">
@@ -18,7 +36,7 @@
           <th>Status</th>
           <th>UserName</th>
           <th>Senha</th>
-          <th>Email</th>
+          <th>Numero Seguidor</th>
           <th>Dispositivo</th>
           <th>Data Criaçao</th>
           <th>Total: {{ perfil.length }}</th>
@@ -29,17 +47,18 @@
           <td>{{ p.status.status }}</td>
           <td>{{ p.username }}</td>
           <td>{{ p.senha }}</td>
-          <td>{{ p.email.email }}</td>
+          <td>{{ p.numeroSeguidor }}</td>
           <td>{{ p.dispositivo }}</td>
           <td>{{ p.dataCriacao }}</td>
-            <span class="float-end">
-              <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="'atualizar/' + [p.username]" >
-                Atualizar
-              </button>
-              <button style="margin-left: 5px;" class="btn btn-outline-info mb-1 btn-sm" [routerLink]="'detalhe/' + [p.username]" >
-                Detalhe
-              </button>
-            </span>
+          <span class="float-end">
+            <button class="btn btn-outline-warning mb-1 btn-sm" [routerLink]="'atualizar/' + [p.username]">
+              Atualizar
+            </button>
+            <button style="margin-left: 5px;" class="btn btn-outline-info mb-1 btn-sm"
+              [routerLink]="'detalhe/' + [p.username]">
+              Detalhe
+            </button>
+          </span>
 
 
         </tr>
