@@ -15,6 +15,7 @@ export class Perfil {
   numeroSeguidor!: string;
   numeroSeguindo!: string;
   genero!: string;
+  qualidade!: string;
   email!: Email;
   status!: Status;
 }

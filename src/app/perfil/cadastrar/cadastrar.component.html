@@ -30,8 +30,8 @@
     <div class="row md-6">
       <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
       <div class="col-sm-4">
-        <input style="margin: 5px" type="text" class="form-control" formControlName="senha"
-          placeholder="Digite a senha" [ngClass]="{ 'is-invalid': submitted && hasError('senha')}">
+        <input style="margin: 5px" type="text" class="form-control" formControlName="senha" placeholder="Digite a senha"
+          [ngClass]="{ 'is-invalid': submitted && hasError('senha')}">
         <div class="invalid-feedback">
           Digite a Senha
         </div>
@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <div class="row md-5"  *ngIf="status$ | async as status; else loading">
+    <div class="row md-5" *ngIf="status$ | async as status; else loading">
       <label for="status" class="col-sm-2 col-form-label">Status:</label>
       <div class="col-sm-8">
         <select style="margin: 5px" id="status" class="form-control" formControlName="status"
@@ -163,6 +163,22 @@
         </div>
       </div>
     </div>
+
+    <div class="row md-6">
+      <label for="qualidade" class="col-sm-2 col-form-label">Qualidade:</label>
+      <div class="col-sm-4">
+        <select style="margin: 5px" id="qualidade" class="form-control" formControlName="qualidade"
+          [ngClass]="{ 'is-invalid': submitted && hasError('qualidade')}">
+          <option value="B">Baixa</option>
+          <option value="M">Media</option>
+          <option value="A">Alta</option>
+        </select>
+        <div class="invalid-feedback">
+          Selecione a qualidade da conta
+        </div>
+      </div>
+    </div>
+
 
     <button style="float:right; margin-top: 10px" type="submit" class="btn btn-primary">Salvar</button>
 

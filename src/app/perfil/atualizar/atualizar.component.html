@@ -178,25 +178,34 @@
 
 
     <div class="row md-6">
-
-
       <label for="dataInicioTrabalho" class="col-sm-2 col-form-label">Data Inicio Trabalho:</label>
       <div class="col-sm-4">
         <input style="margin: 5px" type="date" class="form-control" formControlName="dataInicioTrabalho"
           placeholder="Digite a data de inicio do trabalho">
       </div>
-
-
       <label for="dataBloqueio" class="col-sm-2 col-form-label">Data Bloqueio:</label>
       <div class="col-sm-4">
         <input style="margin: 5px" type="date" class="form-control" formControlName="dataBloqueio"
           placeholder="Digite a data de bloqueio">
       </div>
-
-
-
-
     </div>
+
+    <div class="row md-6">
+      <label for="qualidade" class="col-sm-2 col-form-label">Qualidade:</label>
+      <div class="col-sm-4">
+        <select style="margin: 5px" id="qualidade" class="form-control" formControlName="qualidade"
+          [ngClass]="{ 'is-invalid': submitted && hasError('qualidade')}">
+          <option value="B">Baixa</option>
+          <option value="M">Media</option>
+          <option value="A">Alta</option>
+        </select>
+        <div class="invalid-feedback">
+          Selecione a qualidade da conta
+        </div>
+      </div>
+    </div>
+
+
 
     <button style="float:right; margin-top: 10px" type="submit" class="btn btn-primary">Salvar</button>
 

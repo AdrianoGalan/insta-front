@@ -80,6 +80,7 @@ export class AtualizarComponent implements OnInit {
     this.formulario.controls['numeroSeguindo'].setValue(p.numeroSeguindo);
     this.formulario.controls['dataCriacao'].setValue(p.dataCriacao);
     this.formulario.controls['genero'].setValue(p.genero);
+    this.formulario.controls['qualidade'].setValue(p.qualidade);
 
     this.formulario.controls['dataBloqueio'].setValue(p.dataBloqueio);
     this.formulario.controls['dataInicioTrabalho'].setValue(p.dataInicioTrabalho);
@@ -108,6 +109,7 @@ export class AtualizarComponent implements OnInit {
       nome: [null, [Validators.required, Validators.minLength(1)]],
       sobrenome: [null, [Validators.required, Validators.minLength(1)]],
       genero: [null, [Validators.required]],
+      qualidade: [null, [Validators.required]],
       dataCriacao: [null, [Validators.required]],
       numeroSeguidor: [null, [Validators.required]],
       numeroSeguindo: [null, [Validators.required]],
@@ -130,7 +132,7 @@ export class AtualizarComponent implements OnInit {
 
 
     this.submitted = true
-    
+
     if (this.formulario.valid) {
 
 
@@ -142,6 +144,7 @@ export class AtualizarComponent implements OnInit {
       this.perfil.nome = this.formulario.value['nome'];
       this.perfil.sobreNome = this.formulario.value['sobrenome'];
       this.perfil.genero = this.formulario.value['genero'];
+      this.perfil.qualidade = this.formulario.value['qualidade'];
       this.perfil.dataCriacao = this.formulario.value['dataCriacao'];
       this.perfil.numeroSeguidor = this.formulario.value['numeroSeguidor'];
       this.perfil.numeroSeguindo = this.formulario.value['numeroSeguindo'];

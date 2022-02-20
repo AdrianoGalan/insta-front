@@ -51,6 +51,7 @@ export class CadastrarComponent implements OnInit {
       sobrenome: [null, [Validators.required, Validators.minLength(1)]],
       genero: [null, [Validators.required]],
       dataCriacao: [null, [Validators.required]],
+      qualidade: [null, [Validators.required]],
       numeroSeguidor: [null, [Validators.required]],
       numeroSeguindo: [null, [Validators.required]]
 
@@ -78,6 +79,7 @@ export class CadastrarComponent implements OnInit {
       perfil.dataCriacao = this.formulario.value['dataCriacao'];
       perfil.numeroSeguidor = this.formulario.value['numeroSeguidor'];
       perfil.numeroSeguindo = this.formulario.value['numeroSeguindo'];
+      perfil.qualidade = this.formulario.value['qualidade'];
 
       this.perfilService.salvar(perfil).subscribe(
 
