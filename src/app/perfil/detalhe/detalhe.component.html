@@ -1,1 +1,65 @@
-<p>detalhe works!</p>
+<div class="container">
+  <h1>Perfil Detalhe</h1><br>
+  <nav class="navbar navbar-light bg-light">
+
+    <div class="form-inline">
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/perfil'">
+        voltar
+      </button>
+    </div>
+
+  </nav>
+</div>
+<div class="container" style="padding-top: 10px; width: 60%" *ngIf="perfil$ | async as p; else loading">
+
+  <legend style="padding-bottom: 20px;">Detalhe: {{ p.username }} </legend>
+
+  <nav class="navbar navbar-light bg-light" *ngIf="p.status.status != 'Bloqueado'">
+
+    <div class="form-inline">
+
+      <button style="float:right; margin-top: 10px; margin-left: 10px;" class="btn btn-primary" *ngIf="p.status.status == 'Criado'" (click)="onStatus(p, 'Cadastrado')">Cadastrado</button>
+
+      <button style="float:right; margin-top: 10px; margin-left: 10px;" class="btn btn-danger"(click)="onStatus(p, 'Bloqueado')">Bloquear</button>
+
+      <button style="float:right; margin-top: 10px; margin-left: 10px;" class="btn btn-primary" *ngIf="p.status.status == 'Cadastrado'" (click)="onStatus(p, 'Trabalhando novo')">Trabalhando</button>
+
+      <button style="float:right; margin-top: 10px" class="btn btn-primary" *ngIf="p.status.status == 'Trabalhando novo'" (click)="onStatus(p, 'Trabalhando')">Trabalhando</button>
+
+
+    </div>
+
+
+  </nav>
+
+  <div class="row md-6">
+    <label class="col-sm-10 col-form-label"><b>id:</b> {{ p.id }}</label>
+    <label class="col-sm-10 col-form-label"><b>Username:</b> {{ p.username }}</label>
+    <label class="col-sm-10 col-form-label"><b>Senha:</b> {{ p.senha }}</label>
+    <label class="col-sm-10 col-form-label"><b>Nome:</b> {{ p.nome }} {{p.sobreNome}}</label>
+    <label class="col-sm-10 col-form-label"><b>Dispositivo:</b> {{ p.dispositivo }}</label>
+    <label class="col-sm-10 col-form-label"><b>Data criação:</b> {{ p.dataCriacao }}</label>
+    <label class="col-sm-10 col-form-label"><b>Data cadastro:</b> {{ p.dataCadastro }}</label>
+    <label class="col-sm-10 col-form-label"><b>data bloqueio:</b> {{ p.dataBloqueio }}</label>
+    <label class="col-sm-10 col-form-label"><b>Data ini. trab. :</b> {{ p.dataInicioTrabalho }}</label>
+    <label class="col-sm-10 col-form-label"><b>Seguidor:</b> {{ p.numeroSeguidor }}</label>
+    <label class="col-sm-10 col-form-label"><b>Seguindo:</b> {{ p.numeroSeguindo }}</label>
+    <label class="col-sm-10 col-form-label"><b>Genero:</b> {{ p.genero }}</label>
+    <label class="col-sm-10 col-form-label"><b>Qualidade conta:</b> {{ p.qualidade }}</label>
+    <label class="col-sm-10 col-form-label"><b>Email:</b> {{ p.email.email }}</label>
+    <label class="col-sm-10 col-form-label"><b>Status:</b> {{ p.status.status }}</label>
+  </div>
+
+
+
+
+  <br>
+  <br>
+
+</div>
+
+<ng-template #loading>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

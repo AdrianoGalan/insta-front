@@ -28,9 +28,7 @@ export class ListarComponent implements OnInit {
     this.perfil$ = this.perfilSeervice.listDifBloqueado('2');
     this.status$ = this.statusSevice.list();
 
-    this.status$.forEach(element => {
-      console.log(element)
-    });
+
 
 
 
@@ -42,13 +40,7 @@ export class ListarComponent implements OnInit {
   onFiltrar(){
 
     if(this.inputStatus){
-
-
-
-    console.log(this.inputStatus);
     this.perfil$ = this.perfilSeervice.listByStatus(this.inputStatus.id);
-    }else{
-      console.log("escolhe filho da puta  ")
     }
   }
 

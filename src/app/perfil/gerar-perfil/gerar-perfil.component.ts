@@ -87,7 +87,7 @@ export class GerarPerfilComponent implements OnInit {
       this.perfil.nome = this.formulario.value['nome'];
       this.perfil.sobreNome = this.formulario.value['sobrenome'];
 
-      console.log(this.perfil)
+      
 
       this.perfilService.salvar(this.perfil).subscribe(
 

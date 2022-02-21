@@ -49,4 +49,11 @@ export class PerfilService {
 
     return this.http.put(`${this.API}/atualizar`, JSON.stringify(perfil), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
   }
+
+
+
+  status(perfil: Perfil) {
+
+    return this.http.put(`${this.API}/atualizar/status`, JSON.stringify(perfil), { headers: new HttpHeaders().set('Content-Type', 'application/json'), responseType: 'text' }).pipe(take(1));
+  }
 }
