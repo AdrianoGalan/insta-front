@@ -157,6 +157,7 @@ export class AtualizarComponent implements OnInit {
         success => {
 
           this.formulario.reset();
+          this.perfilService.backup().subscribe();
           this.router.navigate(['perfil']);
 
         },
