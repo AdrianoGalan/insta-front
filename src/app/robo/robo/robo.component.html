@@ -1,1 +1,62 @@
-<p>robo works!</p>
+<div class="container">
+  <h1>Robo</h1><br>
+  <nav class="navbar navbar-light bg-light">
+    <div class="form-inline">
+      <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/home'">
+        Home
+      </button>
+    </div>
+  </nav>
+</div>
+
+<div class="container" style="padding-top: 10px; width: 60%">
+  <form [formGroup]="formulario">
+
+    <h2 style="padding-bottom: 30px;">Posta Imagem</h2>
+
+
+
+    <div class="row md-5" *ngIf="perfil$ | async as perfil; else loading">
+      <label for="perfil" class="col-sm-2 col-form-label">Perfil:</label>
+      <div class="col-sm-10">
+        <select style="margin: 5px" id="perfil" class="form-control" formControlName="perfil"
+          [ngClass]="{ 'is-invalid': submitted && hasError('perfil')}">
+          <option *ngFor="let p of perfil" [ngValue]="p.username">{{ p.username }}</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um perfil
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row md-6">
+      <label for="categoria" class="col-sm-2 col-form-label">Categoria:</label>
+      <div class="col-sm-3">
+        <select style="margin: 5px" id="categoria" class="form-control" formControlName="categoria"
+          [ngClass]="{ 'is-invalid': submitted && hasError('categoria')}">
+          <option value="anime">Anime</option>
+          <option value="natureza">Natureza</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um categoria
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <button style=" margin-top: 5px" class="btn btn-primary" (click)="onPostar()">Postar </button>
+      </div>
+    </div>
+
+
+
+
+
+  </form>
+</div>
+
+<ng-template #loading>
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

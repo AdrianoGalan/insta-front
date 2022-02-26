@@ -1,4 +1,3 @@
-import { PerfilGerado } from './../../model/perfilGerado';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,9 +9,9 @@ import { Status } from 'src/app/model/status';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 
 import { EmailService } from '../service/email.service';
+import { PerfilGeradoService } from '../service/perfil-gerado.service';
 import { PerfilService } from './../service/perfil.service';
 import { StatusService } from './../service/status.service';
-import { PerfilGeradoService } from '../service/perfil-gerado.service';
 
 @Component({
   selector: 'app-gerar-perfil',
@@ -87,7 +86,7 @@ export class GerarPerfilComponent implements OnInit {
       this.perfil.nome = this.formulario.value['nome'];
       this.perfil.sobreNome = this.formulario.value['sobrenome'];
 
-      
+
 
       this.perfilService.salvar(this.perfil).subscribe(
 
