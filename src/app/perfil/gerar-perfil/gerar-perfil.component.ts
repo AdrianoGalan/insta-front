@@ -79,6 +79,7 @@ export class GerarPerfilComponent implements OnInit {
 
       this.perfil.numeroSeguidor = '0';
       this.perfil.numeroSeguindo = '0';
+      this.perfil.numeroPublicacao = '0';
       this.perfil.qualidade = 'B';
       this.perfil.username = this.formulario.value['username'];
       this.perfil.senha = this.formulario.value['senha'];

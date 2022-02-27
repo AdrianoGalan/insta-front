@@ -12,8 +12,10 @@ export class Perfil {
   dataCadastro!: Date;
   dataBloqueio!: Date;
   dataInicioTrabalho!: Date;
+  dataUltimoTrabalho!: Date;
   numeroSeguidor!: string;
   numeroSeguindo!: string;
+  numeroPublicacao!: string;
   genero!: string;
   qualidade!: string;
   email!: Email;

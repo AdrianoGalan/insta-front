@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { Perfil } from 'src/app/model/perfil';
 import { Status } from 'src/app/model/status';
-import { EmailService } from 'src/app/perfil/service/email.service';
-import { PerfilGeradoService } from 'src/app/perfil/service/perfil-gerado.service';
 import { PerfilService } from 'src/app/perfil/service/perfil.service';
-import { StatusService } from 'src/app/perfil/service/status.service';
+import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
+
 import { RoboService } from '../service/robo.service';
 
 
@@ -30,7 +28,8 @@ export class RoboComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private perfilService: PerfilService,
-    private roboService: RoboService
+    private roboService: RoboService,
+    private modalService: BsModalService
 
   ) {
     this.perfil$ = this.perfilService.listDifBloqueado('2');
@@ -48,23 +47,44 @@ export class RoboComponent implements OnInit {
     });
   }
 
+  onVerificar(){
+
+    this.roboService.verificarContas(this.formulario.value['perfil']).subscribe(
+      success => {
+
+        this.formulario.reset();
+      },
+      erro => {
+
+        this.handleError('Erro ao Postar');
+
+      }
+    )
+
+  }
+
   onPostar(){
 
     this.roboService.postar(this.formulario.value['perfil'], this.formulario.value['categoria']).subscribe(
       success => {
 
-        console.log("foi")
+        this.formulario.reset();
       },
       erro => {
 
+        this.handleError('Erro ao Postar');
 
-        console.log("deu merda")
       }
     )
 
 
   }
 
+  handleError(msg: string) {
+    this.bsModalRef = this.modalService.show(AlertModalComponent);
+    this.bsModalRef.content.type = 'danger';
+    this.bsModalRef.content.message = msg;
+  }
 
   hasError(field: string) {
 

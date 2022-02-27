@@ -79,6 +79,7 @@ export class CadastrarComponent implements OnInit {
       perfil.dataCriacao = this.formulario.value['dataCriacao'];
       perfil.numeroSeguidor = this.formulario.value['numeroSeguidor'];
       perfil.numeroSeguindo = this.formulario.value['numeroSeguindo'];
+      perfil.numeroPublicacao = '0';
       perfil.qualidade = this.formulario.value['qualidade'];
 
       this.perfilService.salvar(perfil).subscribe(
