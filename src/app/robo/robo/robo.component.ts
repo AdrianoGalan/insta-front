@@ -81,18 +81,19 @@ export class RoboComponent implements OnInit {
 
   onPostar() {
 
-    this.roboService.postar(this.formulario.value['perfil'], this.formulario.value['categoria']).subscribe(
-      success => {
+    if (this.formulario.valid) {
+      this.roboService.postar(this.formulario.value['perfil'], this.formulario.value['categoria']).subscribe(
+        success => {
 
-        this.formulario.reset();
-      },
-      erro => {
+          this.formulario.reset();
+        },
+        erro => {
 
-        this.handleError('Erro ao Postar');
+          this.handleError('Erro ao Postar');
 
-      }
-    )
-
+        }
+      )
+    }
 
   }
 
@@ -104,6 +105,23 @@ export class RoboComponent implements OnInit {
       this.perfil$ = this.perfilService.listByStatus(this.inputStatus.id);
     }
 
+  }
+
+  onCadastrar() {
+
+    if (this.formulario.value['perfil']) {
+      this.roboService.cadastrarGanhar(this.formulario.value['perfil']).subscribe(
+        success => {
+
+          this.formulario.reset();
+        },
+        erro => {
+
+          this.handleError('Erro ao Postar');
+
+        }
+      )
+    }
   }
 
   onListar() {

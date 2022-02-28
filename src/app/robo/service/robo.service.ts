@@ -19,4 +19,9 @@ export class RoboService {
   verificarContas(username: string) {
     return this.http.get(`${this.API}/verificarcontas/${username}`, { responseType: 'text' }).pipe(take(1));
   }
+
+  cadastrarGanhar(username: string){
+    return this.http.get(`${this.API}/cadastrarGanhar/${username}`, { responseType: 'text' }).pipe(take(1));
+
+  }
 }

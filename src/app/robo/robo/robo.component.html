@@ -55,6 +55,27 @@
       </div>
     </div>
 
+    <h2 style="padding-bottom: 30px;" style="margin-top: 50px;">Cadastrar perfil</h2>
+
+    <div class="row md-5">
+
+      <label for="perfil" class="col-sm-1 col-form-label">Perfil:</label>
+      <div class="col-sm-5">
+        <select style="margin: 5px" id="perfil" class="form-control" formControlName="perfil"
+          [ngClass]="{ 'is-invalid': submitted && hasError('perfil')}">
+          <option *ngFor="let p of perfil" [ngValue]="p.username">{{ p.username }}</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um perfil
+        </div>
+      </div>
+
+
+      <div class="col-sm-2">
+        <button style=" margin-top: 5px" class="btn btn-primary" (click)="onCadastrar()">Cadastrar </button>
+      </div>
+    </div>
+
     <h2 style="padding-bottom: 30px;" style="margin-top: 50px;">Posta Imagem</h2>
 
     <div class="row md-5">
