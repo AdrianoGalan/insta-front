@@ -5,7 +5,29 @@
       <button class="btn btn-outline-success my-2 my-sm-0" [routerLink]="'/home'">
         Home
       </button>
+      <button style="margin-left: 15px;" class="btn btn-outline-success my-2 my-sm-0" (click)="onListar()">
+        Listar todos
+      </button>
     </div>
+
+    <div class="row md-5" *ngIf="status$ | async as status; else loading">
+      <div class="col-sm-8">
+        <select style="margin: 5px" id="status" class="form-control" [(ngModel)]="inputStatus" [compareWith]="compararSelect">
+          <option *ngFor="let s of status" [ngValue]="s">{{ s.status }}</option>
+        </select>
+      </div>
+      <div class="col-sm-3">
+        <button  class="btn btn-outline-success my-2 my-sm-0" (click)="onFiltrar()">
+          Filtrar
+        </button>
+      </div>
+
+    </div>
+
+
+
+
+
   </nav>
 </div>
 

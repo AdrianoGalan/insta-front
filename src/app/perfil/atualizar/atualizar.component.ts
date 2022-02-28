@@ -12,7 +12,7 @@ import { EmailService } from '../service/email.service';
 import { NovoEmailComponent } from './../novo-email/novo-email.component';
 import { NovoStatusComponent } from './../novo-status/novo-status.component';
 import { PerfilService } from './../service/perfil.service';
-import { StatusService } from './../service/status.service'; 
+import { StatusService } from './../service/status.service';
 
 @Component({
   selector: 'app-atualizar',
@@ -200,6 +200,11 @@ export class AtualizarComponent implements OnInit {
 
 
     return this.formulario.get(field)?.errors
+
+  }
+  compararSelect(obj1: any, obj2: any) {
+
+    return obj1 && obj2 ? (obj1.id === obj2.id) : obj1 === obj2
 
   }
 

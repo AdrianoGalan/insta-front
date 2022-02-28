@@ -53,7 +53,7 @@
       <label for="email" class="col-sm-2 col-form-label">Email:</label>
       <div class="col-sm-8">
         <select style="margin: 5px" id="email" class="form-control" formControlName="email"
-          [ngClass]="{ 'is-invalid': submitted && hasError('email')}">
+          [ngClass]="{ 'is-invalid': submitted && hasError('email')}" [compareWith]="compararSelect">
           <option *ngFor="let em of email" [ngValue]="em">{{ em.email }}</option>
         </select>
         <div class="invalid-feedback">
@@ -75,7 +75,7 @@
       <label for="status" class="col-sm-2 col-form-label">Status:</label>
       <div class="col-sm-8">
         <select style="margin: 5px" id="status" class="form-control" formControlName="status"
-          [ngClass]="{ 'is-invalid': submitted && hasError('status')}" [value]="perfil.status">
+          [ngClass]="{ 'is-invalid': submitted && hasError('status')}" [value]="perfil.status" [compareWith]="compararSelect">
           <option *ngFor="let s of status" [ngValue]="s">{{ s.status }}</option>
         </select>
         <div class="invalid-feedback">

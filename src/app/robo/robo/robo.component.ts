@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Observable } from 'rxjs';
+import { map, mapTo, Observable, tap } from 'rxjs';
 import { Perfil } from 'src/app/model/perfil';
 import { Status } from 'src/app/model/status';
 import { PerfilService } from 'src/app/perfil/service/perfil.service';
+import { StatusService } from 'src/app/perfil/service/status.service';
 import { AlertModalComponent } from 'src/app/shared/alert-modal/alert-modal.component';
 
 import { RoboService } from '../service/robo.service';
@@ -23,21 +24,36 @@ export class RoboComponent implements OnInit {
   perfil$!: Observable<Perfil[]>;
   submitted: boolean = false;
   perfil!: Perfil;
-  status!: Status;
+  status$!: Observable<Status[]>;
+  inputStatus!: Status;
 
   constructor(
     private formBuilder: FormBuilder,
     private perfilService: PerfilService,
     private roboService: RoboService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private statusSevice: StatusService
 
   ) {
-    this.perfil$ = this.perfilService.listDifBloqueado('2');
+
+    this.status$ = this.statusSevice.list();
+
+    this.status$.forEach(element => {
+      for (const st of element) {
+        if (st.status == 'Criado') {
+          this.inputStatus = st
+          this.perfil$ = this.perfilService.listByStatus(this.inputStatus.id);
+        }
+      }
+    });
 
 
-   }
+  }
 
   ngOnInit(): void {
+
+
+    // this.perfil$ = this.perfilService.listByStatus(this.inputStatus.id);
 
     this.formulario = this.formBuilder.group({
 
@@ -47,7 +63,7 @@ export class RoboComponent implements OnInit {
     });
   }
 
-  onVerificar(){
+  onVerificar() {
 
     this.roboService.verificarContas(this.formulario.value['perfil']).subscribe(
       success => {
@@ -63,7 +79,7 @@ export class RoboComponent implements OnInit {
 
   }
 
-  onPostar(){
+  onPostar() {
 
     this.roboService.postar(this.formulario.value['perfil'], this.formulario.value['categoria']).subscribe(
       success => {
@@ -80,6 +96,22 @@ export class RoboComponent implements OnInit {
 
   }
 
+  onFiltrar() {
+
+    if (this.inputStatus) {
+
+      console.log(this.inputStatus)
+      this.perfil$ = this.perfilService.listByStatus(this.inputStatus.id);
+    }
+
+  }
+
+  onListar() {
+
+    this.perfil$ = this.perfilService.listDifBloqueado('2');
+
+  }
+
   handleError(msg: string) {
     this.bsModalRef = this.modalService.show(AlertModalComponent);
     this.bsModalRef.content.type = 'danger';
@@ -90,6 +122,12 @@ export class RoboComponent implements OnInit {
 
 
     return this.formulario.get(field)?.errors
+
+  }
+
+  compararSelect(obj1: Status, obj2: Status) {
+
+    return obj1 && obj2 ? (obj1.id === obj2.id) : obj1 === obj2
 
   }
 
