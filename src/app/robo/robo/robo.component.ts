@@ -58,7 +58,11 @@ export class RoboComponent implements OnInit {
     this.formulario = this.formBuilder.group({
 
       perfil: [null, [Validators.required, Validators.minLength(1)]],
-      categoria: [null, [Validators.required, Validators.minLength(1)]]
+      categoria: [null, [Validators.required, Validators.minLength(1)]],
+      nAcoes: [null],
+      tTarefa: [null],
+      nAcaoStores: [null],
+      tStores: [null]
 
     });
   }
@@ -104,6 +108,24 @@ export class RoboComponent implements OnInit {
       console.log(this.inputStatus)
       this.perfil$ = this.perfilService.listByStatus(this.inputStatus.id);
     }
+
+  }
+
+  onRealizarAcao() {
+    // /realizaracoes/{username}/{qtsAcoes}/{tempoEntreAcoes}/{qtsAcoesParaStores}/{tempoStores}
+    this.roboService.realizaracoes(this.formulario.value['perfil'], this.formulario.value['nAcoes'],
+      this.formulario.value['tTarefa'], this.formulario.value['nAcaoStores'], this.formulario.value['tStores']).subscribe(
+        success => {
+
+          this.formulario.reset();
+        },
+        erro => {
+
+          this.handleError('Erro ao Postar');
+
+        }
+      )
+
 
   }
 

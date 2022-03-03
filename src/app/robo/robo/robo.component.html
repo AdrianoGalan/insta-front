@@ -12,12 +12,13 @@
 
     <div class="row md-5" *ngIf="status$ | async as status; else loading">
       <div class="col-sm-8">
-        <select style="margin: 5px" id="status" class="form-control" [(ngModel)]="inputStatus" [compareWith]="compararSelect">
+        <select style="margin: 5px" id="status" class="form-control" [(ngModel)]="inputStatus"
+          [compareWith]="compararSelect">
           <option *ngFor="let s of status" [ngValue]="s">{{ s.status }}</option>
         </select>
       </div>
       <div class="col-sm-3">
-        <button  class="btn btn-outline-success my-2 my-sm-0" (click)="onFiltrar()">
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="onFiltrar()">
           Filtrar
         </button>
       </div>
@@ -108,6 +109,50 @@
       </div>
     </div>
 
+    <h2 style="padding-bottom: 30px;" style="margin-top: 50px;">Realizar tarefa</h2>
+
+    <div class="row md-5">
+
+      <label for="perfil" class="col-sm-1 col-form-label">Perfil:</label>
+      <div class="col-sm-5">
+        <select style="margin: 5px" id="perfil" class="form-control" formControlName="perfil"
+          [ngClass]="{ 'is-invalid': submitted && hasError('perfil')}">
+          <option *ngFor="let p of perfil" [ngValue]="p.username">{{ p.username }}</option>
+        </select>
+        <div class="invalid-feedback">
+          Seleciona um perfil
+        </div>
+      </div>
+
+      <label for="categoria" class="col-sm-2 col-form-label">Numero Açoes:</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" placeholder="ações" aria-label="ações" formControlName="nAcoes">
+      </div>
+
+    </div>
+
+    <div class="row md-5">
+
+
+      <label for="categoria" class="col-sm-2 col-form-label">Tempo entre tarefas:</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" placeholder="tTarefa" aria-label="tTarefa" formControlName="tTarefa">
+      </div>
+
+      <label for="categoria" class="col-sm-2 col-form-label">numero ação para stores:</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" placeholder="ntStores" aria-label="ntStores" formControlName="nAcaoStores">
+      </div>
+
+      <label for="categoria" class="col-sm-2 col-form-label">tempo stores:</label>
+      <div class="col-sm-2">
+        <input type="number" class="form-control" placeholder="tStores" aria-label="tStores" formControlName="tStores">
+      </div>
+
+      <div class="col-sm-2">
+        <button style=" margin-top: 5px" class="btn btn-primary" (click)="onRealizarAcao()">Iniciar </button>
+      </div>
+    </div>
 
 
   </form>
